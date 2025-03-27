@@ -1,6 +1,7 @@
 package com.domBlaze.TestCases;
 
 import java.io.IOException;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,12 +18,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.domBlaze.DriverFactory.WebdriverManager;
 import com.domBlaze.TestBase.TestBase;
 
+@Listeners(com.domBlaze.Listeners.ExtentListeners.class)
 public class validateLinks  extends TestBase{
 	
 	//Page Factory
@@ -37,9 +40,9 @@ public class validateLinks  extends TestBase{
 	
 
 	@BeforeClass
-	@Parameters("browser")
-	public void setUp(String browser) {
-		driver = intitialize(browser);
+	@Parameters({"browser","url"})
+	public void setUp(String browser,String url) {
+		driver = intitialize(WebdriverManager.getInstance(browser).getDriver(),url);
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -74,9 +77,9 @@ public class validateLinks  extends TestBase{
 	}
 
 	
-//	@AfterClass
-//	public void tearDown() {
-//		WebdriverManager.quitBrowser();
-//	}
+	@AfterClass
+	public void tearDown() {
+		WebdriverManager.quitBrowser();
+	}
 
 }

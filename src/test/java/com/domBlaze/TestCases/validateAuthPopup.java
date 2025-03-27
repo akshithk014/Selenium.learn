@@ -8,6 +8,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -17,14 +18,16 @@ import org.testng.annotations.*;
 import com.domBlaze.DriverFactory.WebdriverManager;
 import com.domBlaze.TestBase.TestBase;
 
+@Listeners(com.domBlaze.Listeners.ExtentListeners.class)
 public class validateAuthPopup extends TestBase{
 
 	private static WebDriver driver;
 
 	@BeforeClass
-	@Parameters("browser")
-	public void setUp(String browser) {
-		driver = intitialize(browser);
+	@Parameters({"browser","url"})
+	public void setUp(String browser,String url) {
+		driver = intitialize(WebdriverManager.getInstance(browser).getDriver(),url);
+		PageFactory.initElements(driver, this);
 	}
 	
 	@Test
@@ -33,7 +36,7 @@ public class validateAuthPopup extends TestBase{
 		System.out.println(url[0]+"//admin:admin@"+url[1]);
 		driver.findElement(By.linkText("Basic Auth")).click();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.alertIsPresent());
+//		wait.until(ExpectedConditions.alertIsPresent());
 		Robot robot = new Robot();
 		String username = "admin", password = "admin";
 		robot.delay(2000);

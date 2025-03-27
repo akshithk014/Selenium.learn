@@ -7,6 +7,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -14,14 +15,16 @@ import org.testng.annotations.*;
 import com.domBlaze.DriverFactory.WebdriverManager;
 import com.domBlaze.TestBase.TestBase;
 
+@Listeners(com.domBlaze.Listeners.ExtentListeners.class)
 public class validateSignUp extends TestBase{
 
 	private static WebDriver driver;
 
 	@BeforeClass
-	@Parameters("browser")
-	public void setUp(String browser) {
-		driver = intitialize(browser);
+	@Parameters({"browser","url"})
+	public void setUp(String browser,String url) {
+		driver = intitialize(WebdriverManager.getInstance(browser).getDriver(),url);
+		PageFactory.initElements(driver, this);
 	}
 	
 	@Test

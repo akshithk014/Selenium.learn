@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" thread-count="2" parallel="tests" verbose="2">
- <!-- <test  name="Test Chrome">
-	  <parameter name="browser" value="chrome"/>
-    <classes>
-      <class name="com.domBlaze.TestCases.validateSignUp"/>
-    </classes>
-  </test>  Test -->
-  
-  <test  name="Test firefox">
-	  <parameter name="browser" value="chrome"/>
-    <classes>
-       <class name="com.domBlaze.TestCases.validateLinks"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+<suite name="Suite" thread-count="3" parallel="tests" verbose="3">
+	<listeners>
+		<listener class-name="com.domBlaze.Listeners.ExtentListeners" />
+	</listeners>
+
+	<test name="Test Chrome">
+		<parameter name="browser" value="chrome" />
+		<parameter name="url" value="https://www.demoblaze.com/" />
+		<classes>
+			<class name="com.domBlaze.TestCases.validateSignUp" />
+		</classes>
+	</test>
+
+	<test name="Test Chrome validateAuthPopup">
+		<parameter name="browser" value="chrome" />
+		<parameter name="url" value="https://the-internet.herokuapp.com/" />
+		<classes>
+			<class name="com.domBlaze.TestCases.validateAuthPopup" />
+		</classes>
+	</test>
+
+	<test name="Test firefox - validateLinks">
+		<parameter name="browser" value="chrome" />
+		<parameter name="url" value="https://demoqa.com" />
+		<classes>
+			<class name="com.domBlaze.TestCases.validateLinks" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

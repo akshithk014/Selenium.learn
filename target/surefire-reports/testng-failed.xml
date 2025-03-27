@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.domBlaze.Listeners.ExtentListeners"/>
+  </listeners>
+  <test thread-count="3" parallel="tests" name="Test Chrome(failed)" verbose="0">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.demoblaze.com/"/>
+    <classes>
+      <class name="com.domBlaze.TestCases.validateSignUp">
+        <methods>
+          <include name="tearDown"/>
+          <include name="signUP"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.domBlaze.TestCases.validateSignUp -->
+    </classes>
+  </test> <!-- Test Chrome(failed) -->
+  <test thread-count="3" parallel="tests" name="Test Chrome validateAuthPopup(failed)" verbose="0">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://the-internet.herokuapp.com/"/>
+    <classes>
+      <class name="com.domBlaze.TestCases.validateAuthPopup">
+        <methods>
+          <include name="setUp"/>
+          <include name="authPopup"/>
+        </methods>
+      </class> <!-- com.domBlaze.TestCases.validateAuthPopup -->
+    </classes>
+  </test> <!-- Test Chrome validateAuthPopup(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="2">
+  <listeners>
+    <listener class-name="com.domBlaze.Listeners.ExtentListeners"/>
+  </listeners>
+  <test thread-count="3" parallel="tests" name="Test firefox - validateLinks(failed)" verbose="2">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://demoqa.com"/>
     <classes>
       <class name="com.domBlaze.TestCases.validateLinks">
         <methods>
           <include name="verifyBrokenLinks"/>
+          <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- com.domBlaze.TestCases.validateLinks -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test firefox - validateLinks(failed) -->
+  <test thread-count="3" parallel="tests" name="Test Chrome validateAuthPopup(failed)" verbose="2">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://the-internet.herokuapp.com/"/>
+    <classes>
+      <class name="com.domBlaze.TestCases.validateAuthPopup">
+        <methods>
+          <include name="setUp"/>
+          <include name="authPopup"/>
+        </methods>
+      </class> <!-- com.domBlaze.TestCases.validateAuthPopup -->
+    </classes>
+  </test> <!-- Test Chrome validateAuthPopup(failed) -->
+  <test thread-count="3" parallel="tests" name="Test Chrome(failed)" verbose="2">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.demoblaze.com/"/>
+    <classes>
+      <class name="com.domBlaze.TestCases.validateSignUp">
+        <methods>
+          <include name="tearDown"/>
+          <include name="signUP"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.domBlaze.TestCases.validateSignUp -->
+    </classes>
+  </test> <!-- Test Chrome(failed) -->
+</suite> <!-- Failed suite [Suite] -->
